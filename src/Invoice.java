@@ -28,8 +28,8 @@ public class Invoice extends JPanel {
 	static int invo=1;
 	DefaultTableModel dtm;
 	Object data[];
-	JComboBox<String> cType;
-	ArrayList<String> comp=new ArrayList<String>();
+	JComboBox<String> companyTypeBox;
+	ArrayList<String> company=new ArrayList<String>();
 	private JTextField dField;
 	long total=0;
 	JLabel gtotal ;
@@ -45,18 +45,18 @@ public class Invoice extends JPanel {
 		lblCustomer.setBounds(88, 59, 97, 23);
 		add(lblCustomer);
 		
-		cType = new JComboBox<String>();
-		cType.setBounds(201, 62, 89, 20);
-		add(cType);
-		cType.addItem("Walk-in customer");
-		cType.addItem("Company/customer name");
-		cType.setSelectedIndex(1);
-		cType.addItemListener(new ItemListener() {
+		companyTypeBox = new JComboBox<String>();
+		companyTypeBox.setBounds(201, 62, 89, 20);
+		add(companyTypeBox);
+		companyTypeBox.addItem("Walk-in customer");
+		companyTypeBox.addItem("Company/customer name");
+		companyTypeBox.setSelectedIndex(1);
+		companyTypeBox.addItemListener(new ItemListener() {
 			
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
 				// TODO Auto-generated method stub
-				if(cType.getSelectedIndex()==1)
+				if(companyTypeBox.getSelectedIndex()==1)
 				{
 					lblName.setVisible(true);
 					name.setVisible(true);
@@ -134,7 +134,7 @@ public class Invoice extends JPanel {
 				else
 				{
 					error.setText("");
-					comp.add(str[1]);
+					company.add(str[1]);
 				}
 				dtm.addRow(new Object[]{id,detail,up,q,fp});
 				total+=fp;
@@ -170,7 +170,7 @@ public class Invoice extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				int x=0;
 				String n="";
-				if(cType.getSelectedIndex()==1)
+				if(companyTypeBox.getSelectedIndex()==1)
 					n=name.getText().trim();
 				data=new Object[dtm.getColumnCount()*dtm.getRowCount()];
 				for(int row=0;row<dtm.getRowCount();row++)
@@ -183,7 +183,7 @@ public class Invoice extends JPanel {
 				}
 			pdfGenerator.makePdf(data,total,invo);
 			invo++;
-			DB.addSaleToDB(data,comp,n);
+			DB.addSaleToDB(data,company,n);
 			}
 		});
 		btnPrint.setBounds(664, 411, 89, 52);
