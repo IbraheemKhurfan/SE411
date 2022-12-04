@@ -35,11 +35,11 @@ public class addProduct extends JPanel {
 	 public void settting_add(int x, int y, int width, int height,String text){
 
 		// setBounds(x,y, width, height);
-		JLabel lblAddProduct = new JLabel(text);
-		lblAddProduct.setBounds(x, y, width, height);
+		JLabel AddProduct_Label = new JLabel(text);
+		AddProduct_Label.setBounds(x, y, width, height);
 		Font new_font = make_font("Tahoma", 21);
-		lblAddProduct.setFont(new_font);
-		add(lblAddProduct);
+		AddProduct_Label.setFont(new_font);
+		add(AddProduct_Label);
 
 	 }
 	public addProduct() {

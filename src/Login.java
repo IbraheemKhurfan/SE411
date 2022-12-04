@@ -30,8 +30,8 @@ public class Login extends JFrame {
 	private String password,username;
 	private JLabel error;
 	private String errorText="Invalid user name or password!";
-	private JLabel lblCaddeyLogin;
-	JButton btnLogin;
+	private JLabel CaddeyLogin_Label;
+	JButton Login_Button ;
 	private JLabel label;
 
 	/**
@@ -53,8 +53,8 @@ public class Login extends JFrame {
 					frame.setIconImage(Toolkit.getDefaultToolkit().getImage("F:\\Working Directory\\fianl project with sql\\Bill\\logo.png"));
 					frame.setVisible(true);
 					
-				} catch (Exception e) {
-					e.printStackTrace();
+				} catch (Exception exception) {
+					exception.printStackTrace();
 				}
 			}
 		});
@@ -79,20 +79,20 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		
-		JLabel lblUserName = new JLabel("User name");
-		lblUserName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblUserName.setBounds(154, 141, 91, 14);
-		contentPane.add(lblUserName);
+		JLabel UserName_Label = new JLabel("User name");
+		UserName_Label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		UserName_Label.setBounds(154, 141, 91, 14);
+		contentPane.add(UserName_Label);
 		
 		usernameField = new JTextField();
 		usernameField.setBounds(282, 140, 129, 20);
 		contentPane.add(usernameField);
 		usernameField.setColumns(10);
 		
-		JLabel lblPassword = new JLabel("Password\r\n");
-		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblPassword.setBounds(154, 174, 91, 14);
-		contentPane.add(lblPassword);
+		JLabel Password_Label = new JLabel("Password\r\n");
+		Password_Label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		Password_Label.setBounds(154, 174, 91, 14);
+		contentPane.add(Password_Label);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(282, 173, 129, 20);
@@ -101,62 +101,63 @@ public class Login extends JFrame {
 		passwordField.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
-					btnLogin.doClick();
+			public void actionPerformed(ActionEvent exception) {
+					Login_Button .doClick();
 				}
 		});
 		
-		btnLogin = new JButton("Login");
+		Login_Button  = new JButton("Login");
 	
-		btnLogin.addActionListener(new ActionListener() {
+		Login_Button .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				password=passwordField.getText().toString().toLowerCase();
 				username=usernameField.getText().toString().toLowerCase();
 				passwordField.setText("");
 				usernameField.setText("");
-				if(password.equals("")||username.equals(""))
-					error.setText(errorText);
-				else
-				{
+				if(!password.equals("")||!username.equals("")){
 					error.setText("");
 					if(username.equals("admin"))
 					{
 						if(DB.varifyLogin(username,password))
 							{
 								error.setText("");
-								AdminPanel p=new AdminPanel();
-								p.setVisible(true);
+								AdminPanel admin_panel=new AdminPanel();
+								admin_panel.setVisible(true);
 							}
-						else
+						else{
 							error.setText(errorText);
+						}
 					}
-					else
-					{
-						if(DB.varifyLogin(username,password))
+					else if(DB.varifyLogin(username,password))
 						{
 							error.setText("");
 							generateInvoice g=new generateInvoice();
 							g.setVisible(true);
 						}
-					else
+					else{
 						error.setText(errorText);
 					}
 					
+				
+				}
+				else
+				{
+					error.setText(errorText);	
 				}
 			}
 		});
-		btnLogin.setBounds(282, 227, 89, 23);
-		contentPane.add(btnLogin);
+		Login_Button .setBounds(282, 227, 89, 23);
+		contentPane.add(Login_Button );
 		
 		error = new JLabel("");
 		error.setForeground(Color.RED);
 		error.setBounds(104, 236, 220, 14);
 		contentPane.add(error);
 		
-		lblCaddeyLogin = new JLabel("Caddey Login");
-		lblCaddeyLogin.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblCaddeyLogin.setBounds(204, 26, 167, 28);
-		contentPane.add(lblCaddeyLogin);
+		CaddeyLogin_Label = new JLabel("Caddey Login");
+		CaddeyLogin_Label.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		CaddeyLogin_Label.setBounds(204, 26, 167, 28);
+		contentPane.add(CaddeyLogin_Label);
 		
 		label = new JLabel("");
 		label.setIcon(new ImageIcon("E:\\XAMPP\\htdocs\\logo.png"));
@@ -167,31 +168,33 @@ public class Login extends JFrame {
 	}
 	public static String getMac()
 	{
-		InetAddress ip;
-		String mc="";
+		InetAddress user_ip;
+		String mac="";
 		try {
-			ip = InetAddress.getLocalHost();
-			NetworkInterface network = NetworkInterface.getByInetAddress(ip);
+			user_ip = InetAddress.getLocalHost();
+			NetworkInterface network = NetworkInterface.getByInetAddress(user_ip);
 
 			byte[] mac = network.getHardwareAddress();
 
-			StringBuilder sb = new StringBuilder();
+			StringBuilder string_builder = new StringBuilder();
 			for (int i = 0; i < mac.length; i++) {
-				sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+				string_builder.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
 			}
 		
-			mc= sb.toString();
+			mac= string_builder.toString();
 
-		} catch (UnknownHostException e) {
+		} catch (UnknownHostException exception) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SocketException e) {
+			exception.printStackTrace();
+		} catch (SocketException exception) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
-		return mc;
+		return mac;
 		
 	
 	}
+
+
 	
 }

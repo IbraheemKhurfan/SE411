@@ -41,39 +41,39 @@ public class pdfGenerator {
 				
 			
 	         document.open();
-	         Font f1 = new Font(Font.FontFamily.UNDEFINED, 18, Font.BOLD);
-	        Paragraph p1= new Paragraph("CADDEY STORE",f1);
+	        Font font1 = new Font(Font.FontFamily.UNDEFINED, 18, Font.BOLD);
+	        Paragraph paragraph1= new Paragraph("CADDEY STORE",font1);
 	    
-	        Paragraph p2= new Paragraph("Main Market Gulberg II Lahore");
-	        Paragraph p3= new Paragraph("042-35712296\n\n\n");
-	        Paragraph p4= new Paragraph("\n\nGrand Total: "+total,f1);
-	        Paragraph p5= new Paragraph("\nThank you for visiting us…!!\nReturn/Exchange not possible with-out bill.");
+	        Paragraph paragraph2= new Paragraph("Main Market Gulberg II Lahore");
+	        Paragraph paragraph3= new Paragraph("042-35712296\n\n\n");
+	        Paragraph paragraph4= new Paragraph("\n\nGrand Total: "+total,font1);
+	        Paragraph paragraph5= new Paragraph("\nThank you for visiting usï¿½!!\nReturn/Exchange not possible with-out bill.");
 	        
-	         p1.setAlignment(Element.ALIGN_CENTER);
-	         p3.setAlignment(Element.ALIGN_CENTER);
-	         p2.setAlignment(Element.ALIGN_CENTER);
-	         document.add(p1);
-	         document.add(p2);
-	         document.add(p3);
-	         Font f2 = new Font(Font.FontFamily.UNDEFINED, 8, Font.NORMAL);
-	         Phrase phrase = new Phrase("Time/Date: "+dateFormat.format(date), f2);
-	         PdfContentByte canvas = writer.getDirectContent();
-	         ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, phrase, 40, 740, 0);
-	         Phrase invNo = new Phrase("Invoice No. "+inv, f2);
-	         PdfContentByte canv = writer.getDirectContent();
-	         ColumnText.showTextAligned(canv, Element.ALIGN_LEFT, invNo, 510, 785, 0);
+	         paragraph1.setAlignment(Element.ALIGN_CENTER);
+	         paragraph3.setAlignment(Element.ALIGN_CENTER);
+	         paragraph2.setAlignment(Element.ALIGN_CENTER);
+	         document.add(paragraph1);
+	         document.add(paragraph2);
+	         document.add(paragraph3);
+	         Font font2 = new Font(Font.FontFamily.UNDEFINED, 8, Font.NORMAL);
+	         Phrase phrase = new Phrase("Time/Date: "+dateFormat.format(date), font2);
+	         PdfContentByte canvas1 = writer.getDirectContent();
+	         ColumnText.showTextAligned(canvas2, Element.ALIGN_LEFT, phrase, 40, 740, 0);
+	         Phrase Invoice_Number = new Phrase("Invoice No. "+inv, font2);
+	         PdfContentByte canvas2 = writer.getDirectContent();
+	         ColumnText.showTextAligned(canvas2, Element.ALIGN_LEFT, Invoice_Number, 510, 785, 0);
 	         Image image;
 			try {
 				  image = Image.getInstance("E:\\XAMPP\\htdocs\\logo.png");
 		          image.setAbsolutePosition(10f, 730f);
 		          document.add(image);
 		          
-			} catch (MalformedURLException e) {
+			} catch (MalformedURLException exception) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
+				exception.printStackTrace();
+			} catch (IOException exception) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				exception.printStackTrace();
 			}
 			
 			 PdfPTable table = new PdfPTable(5);
@@ -89,17 +89,17 @@ public class pdfGenerator {
 		            table.addCell(data[aw]+"");
 		        }
 		        document.add(table);
-		        document.add(p4);
-		        document.add(p5);
+		        document.add(paragraph4);
+		        document.add(paragraph5);
 	        // writer.close();
 	         document.close();
 	         sendIn2printer(invoice);
-				} catch (FileNotFoundException e) {
+				} catch (FileNotFoundException exception) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (DocumentException e) {
+					exception.printStackTrace();
+				} catch (DocumentException exception) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					exception.printStackTrace();
 				}
 	}
 	public static void makePdf2(Object[] data,long total)
@@ -114,19 +114,19 @@ public class pdfGenerator {
 				
 			
 	         document.open();
-	         Font f1 = new Font(Font.FontFamily.UNDEFINED, 18, Font.BOLD);
-	        Paragraph p1= new Paragraph("CADDEY STORE",f1);
+	         Font font1 = new Font(Font.FontFamily.UNDEFINED, 18, Font.BOLD);
+	        Paragraph paragraph1= new Paragraph("CADDEY STORE",font1);
 	    
-	        Paragraph p2= new Paragraph("Main Market Gulberg II Lahore");
-	        Paragraph p3= new Paragraph("042-35712296\n\n\n");
-	        Paragraph p4= new Paragraph("\n\nGrand Total: "+total,f1);
+	        Paragraph paragraph2= new Paragraph("Main Market Gulberg II Lahore");
+	        Paragraph paragraph3= new Paragraph("042-35712296\n\n\n");
+	        Paragraph paragraph4= new Paragraph("\n\nGrand Total: "+total,font1);
 	        
-	         p1.setAlignment(Element.ALIGN_CENTER);
-	         p3.setAlignment(Element.ALIGN_CENTER);
-	         p2.setAlignment(Element.ALIGN_CENTER);
-	         document.add(p1);
-	         document.add(p2);
-	         document.add(p3);
+	         paragraph1.setAlignment(Element.ALIGN_CENTER);
+	         paragraph3.setAlignment(Element.ALIGN_CENTER);
+	         paragraph2.setAlignment(Element.ALIGN_CENTER);
+	         document.add(paragraph1);
+	         document.add(paragraph2);
+	         document.add(paragraph3);
 	       
 			 PdfPTable table = new PdfPTable(4);
 			 table.addCell("Date");
@@ -137,17 +137,17 @@ public class pdfGenerator {
 		            table.addCell(data[aw]+"");
 		        }
 		        document.add(table);
-		        document.add(p4);
+		        document.add(paragraph4);
 		        
 	        // writer.close();
 	         document.close();
 	         sendIn2printer(sale);
-				} catch (FileNotFoundException e) {
+				} catch (FileNotFoundException exception) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (DocumentException e) {
+					exception.printStackTrace();
+				} catch (DocumentException exception) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					exception.printStackTrace();
 				}
 	}
 	
@@ -158,8 +158,8 @@ public class pdfGenerator {
 	    try {
 	    //desktop.print(new File("DocXfile.docx"));
 	        desktop.print(new File(file));
-	    } catch (IOException e) {           
-	        e.printStackTrace();
+	    } catch (IOException exception) {           
+	        exception.printStackTrace();
 	    }}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
