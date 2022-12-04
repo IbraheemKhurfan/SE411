@@ -19,7 +19,7 @@ public class addCashier extends JPanel {
 	JButton btnAddCashier;
 	private JPasswordField passwordField;
 	private JLabel error;
-	String err="Enter username and passowrd";
+	String error_message="Enter username and passowrd";
 	String user,pass;
 	/**
 	 * Create the panel.
@@ -58,7 +58,7 @@ public class addCashier extends JPanel {
 				user=userField.getText().trim();
 				pass=passwordField.getText().toString().trim().toLowerCase();
 				if(user.equals("")||pass.equals(""))
-					error.setText(err);
+					error.setText(error_message);
 				else
 				{
 					error.setText("");

@@ -16,13 +16,13 @@ import java.awt.Color;
 public class addProduct extends JPanel {
 	
 	JTextField idField;
-	JTextArea descField;
-    JTextField quanField;
+	JTextArea descriptionField;
+    JTextField quantityField;
     JLabel error;
-	JComboBox<String> company;
-	String id,detail,comp;
-	int quan;
-	String err="Enter product id and quantity";
+	JComboBox<String> company_box;
+	String product_id,product_details,company;
+	int quantity;
+	String error_message="Enter product id and quantity";
 	/**
 	 * Create the panel.
 	 */
@@ -47,33 +47,30 @@ public class addProduct extends JPanel {
 
 
 		setBounds(100, 100, 840, 619);
-		settting_add(328,45,115,21,"ADD PRODUCT");
-		// JLabel lblAddProduct = new JLabel("ADD PRODUCT");
-		// lblAddProduct.setBounds(328, 45, 115, 21);
-		// lblAddProduct.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		// add(lblAddProduct);
+		JLabel AddProduct_Label = new JLabel("ADD PRODUCT");
+		AddProduct_Label.setBounds(328, 45, 115, 21);
+		AddProduct_Label.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		add(AddProduct_Label);
 		
-
-		settting_add(246, 136, 124, 21,"Product ID");
-		// JLabel lblProductName = new JLabel("Product ID");
-		// lblProductName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel ProductName_Label = new JLabel("Product ID");
+		ProductName_Label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		ProductName_Label.setBounds(246, 136, 124, 21);
+		add(ProductName_Label);
 		
-		// add(lblProductName);
-		
-		JLabel lblProductDescription = new JLabel("Product Details\r\n");
-		lblProductDescription.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblProductDescription.setBounds(246, 168, 139, 21);
-		add(lblProductDescription);
+		JLabel ProductDescription_Label = new JLabel("Product Details\r\n");
+		ProductDescription_Label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		ProductDescription_Label.setBounds(246, 168, 139, 21);
+		add(ProductDescription_Label);
 		
 		idField = new JTextField();
 		idField.setBounds(449, 137, 136, 20);
 		add(idField);
 		idField.setColumns(10);
 		
-		descField = new JTextArea();
-		descField.setBounds(449, 168, 136, 58);
-		add(descField);
-		JScrollPane scroll = new JScrollPane(descField);
+		descriptionField = new JTextArea();
+		descriptionField.setBounds(449, 168, 136, 58);
+		add(descriptionField);
+		JScrollPane scroll = new JScrollPane(descriptionField);
 		scroll.setBounds(449, 168, 136, 58);
 		add(scroll);
 		
@@ -82,39 +79,40 @@ public class addProduct extends JPanel {
 		lblCompany.setBounds(246, 241, 124, 21);
 		add(lblCompany);
 		
-		JButton btnAddProduct = new JButton("Add Product");
-		btnAddProduct.addActionListener(new ActionListener() {
+		JButton AddProduct_Button = new JButton("Add Product");
+		AddProduct_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(quanField.getText().equals("")||idField.getText().equals(""))
+				if(!quantityField.getText().equals("")||!idField.getText().equals(""))
 				{
-					error.setText(err);
+					error.setText("");
+					product_id=idField.getText().trim();
+					quantity=Integer.parseInt(quantityField.getText().trim());
+					product_details=descriptionField.getText().trim();
+					company=company.getSelectedItem().toString();
+					DB.addProductToDB(product_id, product_details, company, quantity);
+					idField.setText("");
+					quantityField.setText("");
+					descriptionField.setText("");
 				}
 				else
 				{
-					error.setText("");
-					id=idField.getText().trim();
-					quan=Integer.parseInt(quanField.getText().trim());
-					detail=descField.getText().trim();
-					comp=company.getSelectedItem().toString();
-					DB.addProductToDB(id, detail, comp, quan);
-					idField.setText("");
-					quanField.setText("");
-					descField.setText("");
+					error.setText(error_message);
+					
 				}
 			}
 		});
-		btnAddProduct.setBounds(449, 334, 136, 23);
-		add(btnAddProduct);
+		AddProduct_Button.setBounds(449, 334, 136, 23);
+		add(AddProduct_Button);
 		
-		quanField = new JTextField();
-		quanField.setColumns(10);
-		quanField.setBounds(449, 274, 136, 20);
-		add(quanField);
+		quantityField = new JTextField();
+		quantityField.setColumns(10);
+		quantityField.setBounds(449, 274, 136, 20);
+		add(quantityField);
 		
-		JLabel lblQuantity = new JLabel("Items available");
-		lblQuantity.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblQuantity.setBounds(246, 273, 124, 21);
-		add(lblQuantity);
+		JLabel Quantity_Label  = new JLabel("Items available");
+		Quantity_Label .setFont(new Font("Tahoma", Font.PLAIN, 14));
+		Quantity_Label .setBounds(246, 273, 124, 21);
+		add(Quantity_Label );
 		
 		company = new JComboBox<String>();
 		company.setBounds(449, 243, 136, 20);
