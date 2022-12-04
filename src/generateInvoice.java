@@ -17,7 +17,7 @@ import java.awt.Toolkit;
 public class generateInvoice extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
-	int jp;
+	int jPanel_num;
 	ArrayList<JPanel> panels=new ArrayList<JPanel>();
 
 	/**
@@ -71,36 +71,36 @@ public class generateInvoice extends JFrame implements ActionListener{
 		panels.add(new Invoice());
 		panels.add(new searchProduct());
 		getContentPane().add(panels.get(0));
-		jp=0;
+		jPanel_num=0;
 		this.setTitle("Generate Invoice");
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent event) {
 		// TODO Auto-generated method stub
-		if(e.getActionCommand().equals("Search Product"))
+		if(event.getActionCommand().equals("Search Product"))
 		{
-			this.remove(panels.get(jp));
+			this.remove(panels.get(jPanel_num));
 			this.revalidate();
 			this.repaint();
 			getContentPane().add(panels.get(1));
-			jp=1;
+			jPanel_num=1;
 			this.setVisible(true);
 			this.setTitle("Search Product");
 			
 		}
-		else if(e.getActionCommand().equals("Generate Invoice"))
+		else if(event.getActionCommand().equals("Generate Invoice"))
 		{
-			this.remove(panels.get(jp));
+			this.remove(panels.get(jPanel_num));
 			this.revalidate();
 			this.repaint();
 			getContentPane().add(panels.get(0));
 			this.setVisible(true);
-			jp=0;
+			jPanel_num=0;
 			this.setTitle("Generate Invoice");
 		}
 		
-		else if(e.getActionCommand().equals("Logout"))
+		else if(event.getActionCommand().equals("Logout"))
 		{
 			this.dispose();
 		}
