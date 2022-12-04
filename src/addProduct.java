@@ -26,18 +26,39 @@ public class addProduct extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+
+
+	public Font make_font(String name, int size){
+		return new Font(name, Font.PLAIN, size);
+	}
+
+	 public void settting_add(int x, int y, int width, int height,String text){
+
+		// setBounds(x,y, width, height);
+		JLabel lblAddProduct = new JLabel(text);
+		lblAddProduct.setBounds(x, y, width, height);
+		Font new_font = make_font("Tahoma", 21);
+		lblAddProduct.setFont(new_font);
+		add(lblAddProduct);
+
+	 }
 	public addProduct() {
 		setLayout(null);
+
+
 		setBounds(100, 100, 840, 619);
-		JLabel lblAddProduct = new JLabel("ADD PRODUCT");
-		lblAddProduct.setBounds(328, 45, 115, 21);
-		lblAddProduct.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		add(lblAddProduct);
+		settting_add(328,45,115,21,"ADD PRODUCT");
+		// JLabel lblAddProduct = new JLabel("ADD PRODUCT");
+		// lblAddProduct.setBounds(328, 45, 115, 21);
+		// lblAddProduct.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		// add(lblAddProduct);
 		
-		JLabel lblProductName = new JLabel("Product ID");
-		lblProductName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblProductName.setBounds(246, 136, 124, 21);
-		add(lblProductName);
+
+		settting_add(246, 136, 124, 21,"Product ID");
+		// JLabel lblProductName = new JLabel("Product ID");
+		// lblProductName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		// add(lblProductName);
 		
 		JLabel lblProductDescription = new JLabel("Product Details\r\n");
 		lblProductDescription.setFont(new Font("Tahoma", Font.PLAIN, 14));

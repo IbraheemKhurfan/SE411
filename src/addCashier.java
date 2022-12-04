@@ -25,6 +25,7 @@ public class addCashier extends JPanel {
 	 * Create the panel.
 	 */
 	public addCashier() {
+		// new func
 		setLayout(null);
 		setBounds(100, 100, 840, 619);
 		JLabel lblAddCashier = new JLabel("ADD CASHIER");
@@ -32,21 +33,25 @@ public class addCashier extends JPanel {
 		lblAddCashier.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		add(lblAddCashier);
 		
+		// new func
 		JLabel lblUserName = new JLabel("User name");
 		lblUserName.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblUserName.setBounds(246, 104, 124, 21);
 		add(lblUserName); 
 		
+		// new func
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblPassword.setBounds(246, 136, 124, 21);
 		add(lblPassword);
 		
+		// new func
 		userField = new JTextField();
 		userField.setBounds(436, 106, 147, 20);
 		add(userField);
 		userField.setColumns(10);
 		
+		// new func
 		btnAddCashier = new JButton("Add Cashier");
 		btnAddCashier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
