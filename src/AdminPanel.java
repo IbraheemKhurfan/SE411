@@ -133,7 +133,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("Selected: " + e.getActionCommand()); 
+		System.out.println("Selected: " + e.getActionCommand());
 		// CHANGE TO SWITCH 
 		String cond = e.getActionCommand();
 		switch (cond) {
@@ -144,31 +144,35 @@ public class AdminPanel extends JFrame implements ActionListener {
 			this.setVisible(true);
 			cPanel=0;
 			this.setTitle("Add Product");
-				break;
+			break;
 			case "Update Product":
 			repeted_actions();
 			getContentPane().add(panels.get(1));
 			this.setVisible(true);
 			cPanel=1;
 			this.setTitle("Update Product");
+			break;
 			case "Delete Product":
 			repeted_actions();
 			getContentPane().add(panels.get(2));
 			this.setVisible(true);
 			cPanel=2;
 			this.setTitle("Delete Product");
+			break;
 			case "Add Cashier":
 			repeted_actions();
 			getContentPane().add(panels.get(3));
 			this.setVisible(true);
 			cPanel=3;
 			this.setTitle("Add Cashier");
+			break;
 			case "Delete Cashier":
 			repeted_actions();	
 			getContentPane().add(panels.get(4));
 			this.setVisible(true);
 			cPanel=4;
 			this.setTitle("Delete Cashier");
+			break;
 			case "Show Stock":
 			this.remove(panels.get(cPanel));
 			getContentPane().add(panels.get(5));
@@ -177,6 +181,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 			this.setVisible(true);
 			cPanel=5;
 			this.setTitle("Show Stock");
+			break;
 			case "Search Product":
 			this.remove(panels.get(cPanel));
 			getContentPane().add(panels.get(6));
@@ -185,6 +190,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 			this.setVisible(true);
 			cPanel=6;
 			this.setTitle("Search Product");
+			break;
 			case "Search Cashier":
 			this.remove(panels.get(cPanel));
 			getContentPane().add(panels.get(7));
@@ -193,6 +199,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 			this.setVisible(true);
 			cPanel=7;
 			this.setTitle("Search Cashier");
+			break;
 			case "Print Sale":
 			this.remove(panels.get(cPanel));
 			getContentPane().add(panels.get(8));
@@ -202,7 +209,9 @@ public class AdminPanel extends JFrame implements ActionListener {
 			cPanel=8;
 			this.setTitle("Logout");
 			this.dispose();
+			break;
 			default:
+			System.out.println("error command not recognised");
 				break;
 		}
 

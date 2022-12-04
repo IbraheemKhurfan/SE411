@@ -183,4 +183,6 @@ public class Sale extends JPanel {
 		return date[0]+"/"+date[1]+"/"+date_list[place].trim();
 
 	}
+
+	
 }
