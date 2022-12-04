@@ -116,63 +116,60 @@ public class AdminPanel extends JFrame implements ActionListener {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+
+	private void repeted_actions(){
+		this.remove(panels.get(cPanel));
+		this.revalidate();
+		this.repaint();
+	}
+	// this repeted_actions(); is for the three codes used reptedly in the actionPerformed 
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("Selected: " + e.getActionCommand());   
-		if(e.getActionCommand().equals("Add Product"))
-		{
+		System.out.println("Selected: " + e.getActionCommand()); 
+		// CHANGE TO SWITCH 
+		String cond = e.getActionCommand();
+		switch (cond) {
+			case "Add Product":
 			System.out.println(panels.get(cPanel));
-			this.remove(panels.get(cPanel));
-			this.revalidate();
-			this.repaint();
+			repeted_actions();
 			getContentPane().add(panels.get(0));
 			this.setVisible(true);
 			cPanel=0;
 			this.setTitle("Add Product");
-		}
-		else if(e.getActionCommand().equals("Update Product"))
-		{
-			this.remove(panels.get(cPanel));
-			this.revalidate();
-			this.repaint();
+				break;
+			case "Update Product":
+			repeted_actions();
 			getContentPane().add(panels.get(1));
 			this.setVisible(true);
 			cPanel=1;
 			this.setTitle("Update Product");
-		}
-		else if(e.getActionCommand().equals("Delete Product"))
-		{
-			this.remove(panels.get(cPanel));
-			this.revalidate();
-			this.repaint();
+			case "Delete Product":
+			repeted_actions();
 			getContentPane().add(panels.get(2));
 			this.setVisible(true);
 			cPanel=2;
 			this.setTitle("Delete Product");
-		}
-		else if(e.getActionCommand().equals("Add Cashier"))
-		{
-			this.remove(panels.get(cPanel));
-			this.revalidate();
-			this.repaint();
+			case "Add Cashier":
+			repeted_actions();
 			getContentPane().add(panels.get(3));
 			this.setVisible(true);
 			cPanel=3;
 			this.setTitle("Add Cashier");
-		}
-		else if(e.getActionCommand().equals("Delete Cashier"))
-		{
-			this.remove(panels.get(cPanel));
-			this.revalidate();
-			this.repaint();
+			case "Delete Cashier":
+			repeted_actions();	
 			getContentPane().add(panels.get(4));
 			this.setVisible(true);
 			cPanel=4;
 			this.setTitle("Delete Cashier");
-		}
-		else if(e.getActionCommand().equals("Show Stock"))
-		{
+			case "Show Stock":
 			this.remove(panels.get(cPanel));
 			getContentPane().add(panels.get(5));
 			this.revalidate();
@@ -180,9 +177,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 			this.setVisible(true);
 			cPanel=5;
 			this.setTitle("Show Stock");
-		}
-		else if(e.getActionCommand().equals("Search Product"))
-		{
+			case "Search Product":
 			this.remove(panels.get(cPanel));
 			getContentPane().add(panels.get(6));
 			this.revalidate();
@@ -190,9 +185,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 			this.setVisible(true);
 			cPanel=6;
 			this.setTitle("Search Product");
-		}
-		else if(e.getActionCommand().equals("Search Cashier"))
-		{
+			case "Search Cashier":
 			this.remove(panels.get(cPanel));
 			getContentPane().add(panels.get(7));
 			this.revalidate();
@@ -200,20 +193,116 @@ public class AdminPanel extends JFrame implements ActionListener {
 			this.setVisible(true);
 			cPanel=7;
 			this.setTitle("Search Cashier");
-		}
-		else if(e.getActionCommand().equals("Print Sale"))
-		{
+			case "Print Sale":
 			this.remove(panels.get(cPanel));
 			getContentPane().add(panels.get(8));
 			this.revalidate();
 			this.repaint();
 			this.setVisible(true);
 			cPanel=8;
-			this.setTitle("Print Sale");
-		}
-		else if(e.getActionCommand().equals("Logout"))
-		{
+			this.setTitle("Logout");
 			this.dispose();
+			default:
+				break;
 		}
+
+
+		// END OF SWITCH
+		  
+		// if(e.getActionCommand().equals("Add Product"))
+		// {
+		// 	System.out.println(panels.get(cPanel));
+		// 	this.remove(panels.get(cPanel));
+		// 	this.revalidate();
+		// 	this.repaint();
+		// 	getContentPane().add(panels.get(0));
+		// 	this.setVisible(true);
+		// 	cPanel=0;
+		// 	this.setTitle("Add Product");
+		// }
+		// else if(e.getActionCommand().equals("Update Product"))
+		// {
+		// 	this.remove(panels.get(cPanel));
+		// 	this.revalidate();
+		// 	this.repaint();
+		// 	getContentPane().add(panels.get(1));
+		// 	this.setVisible(true);
+		// 	cPanel=1;
+		// 	this.setTitle("Update Product");
+		// }
+		// else if(e.getActionCommand().equals("Delete Product"))
+		// {
+		// 	this.remove(panels.get(cPanel));
+		// 	this.revalidate();
+		// 	this.repaint();
+		// 	getContentPane().add(panels.get(2));
+		// 	this.setVisible(true);
+		// 	cPanel=2;
+		// 	this.setTitle("Delete Product");
+		// }
+		// else if(e.getActionCommand().equals("Add Cashier"))
+		// {
+		// 	this.remove(panels.get(cPanel));
+		// 	this.revalidate();
+		// 	this.repaint();
+		// 	getContentPane().add(panels.get(3));
+		// 	this.setVisible(true);
+		// 	cPanel=3;
+		// 	this.setTitle("Add Cashier");
+		// }
+		// else if(e.getActionCommand().equals("Delete Cashier"))
+		// {
+		// 	this.remove(panels.get(cPanel));
+		// 	this.revalidate();
+		// 	this.repaint();
+		// 	getContentPane().add(panels.get(4));
+		// 	this.setVisible(true);
+		// 	cPanel=4;
+		// 	this.setTitle("Delete Cashier");
+		// }
+		// else if(e.getActionCommand().equals("Show Stock"))
+		// {
+		// 	this.remove(panels.get(cPanel));
+		// 	getContentPane().add(panels.get(5));
+		// 	this.revalidate();
+		// 	this.repaint();
+		// 	this.setVisible(true);
+		// 	cPanel=5;
+		// 	this.setTitle("Show Stock");
+		// }
+		// else if(e.getActionCommand().equals("Search Product"))
+		// {
+		// 	this.remove(panels.get(cPanel));
+		// 	getContentPane().add(panels.get(6));
+		// 	this.revalidate();
+		// 	this.repaint();
+		// 	this.setVisible(true);
+		// 	cPanel=6;
+		// 	this.setTitle("Search Product");
+		// }
+		// else if(e.getActionCommand().equals("Search Cashier"))
+		// {
+		// 	this.remove(panels.get(cPanel));
+		// 	getContentPane().add(panels.get(7));
+		// 	this.revalidate();
+		// 	this.repaint();
+		// 	this.setVisible(true);
+		// 	cPanel=7;
+		// 	this.setTitle("Search Cashier");
+		// }
+		// else if(e.getActionCommand().equals("Print Sale"))
+		// {
+		// 	this.remove(panels.get(cPanel));
+		// 	getContentPane().add(panels.get(8));
+		// 	this.revalidate();
+		// 	this.repaint();
+		// 	this.setVisible(true);
+		// 	cPanel=8;
+		// 	this.setTitle("Print Sale");
+		// }
+		// else if(e.getActionCommand().equals("Logout"))
+		// {
+		// 	this.dispose();
+		// }
 	}
 }
