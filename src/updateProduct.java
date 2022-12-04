@@ -19,14 +19,14 @@ import java.awt.Color;
 
 public class updateProduct extends JPanel {
 	
-	JTextField idField;
-	JTextArea descField;
-	JButton btnUpdateProduct;
-	JComboBox<String> company;
-	private JTextField quanField;
+	JTextField field_id;
+	JTextArea description_field;
+	JButton updateProduct_Button;
+	JComboBox<String> companyBox;
+	private JTextField quantity_field;
 	JLabel error ;
-	String id,detail,comp;
-	int quan;
+	String id,detail,company;
+	int quantity ;
 	String err="Enter product id and quantity";
 	/**
 	 * Create the panel.
@@ -34,53 +34,53 @@ public class updateProduct extends JPanel {
 	public updateProduct() {
 		setLayout(null);
 		setBounds(100, 100, 840, 619);
-		JLabel lblUpdateProduct = new JLabel("UPDATE PRODUCT");
-		lblUpdateProduct.setBounds(328, 45, 182, 21);
-		lblUpdateProduct.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		add(lblUpdateProduct);
+		JLabel updateProduct_label = new JLabel("UPDATE PRODUCT");
+		updateProduct_label.setBounds(328, 45, 182, 21);
+		updateProduct_label.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		add(updateProduct_label);
 		
-		JLabel lblProductName = new JLabel("Product ID");
-		lblProductName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblProductName.setBounds(246, 136, 124, 21);
-		add(lblProductName);
+		JLabel productName_label = new JLabel("Product ID");
+		productName_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		productName_label.setBounds(246, 136, 124, 21);
+		add(productName_label);
 		
-		JLabel lblProductDescription = new JLabel("Product detail\r\n");
-		lblProductDescription.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblProductDescription.setBounds(246, 168, 139, 21);
-		add(lblProductDescription);
+		JLabel productDescription_label = new JLabel("Product detail\r\n");
+		productDescription_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		productDescription_label.setBounds(246, 168, 139, 21);
+		add(productDescription_label);
 		
-		idField = new JTextField();
-		idField.setBounds(449, 137, 136, 20);
-		add(idField);
-		idField.setColumns(10);
+		field_id = new JTextField();
+		field_id.setBounds(449, 137, 136, 20);
+		add(field_id);
+		field_id.setColumns(10);
 		
-		descField = new JTextArea();
-		descField.setBounds(449, 168, 136, 58);
-		add(descField);
-		JScrollPane scroll = new JScrollPane(descField);
+		description_field = new JTextArea();
+		description_field.setBounds(449, 168, 136, 58);
+		add(description_field);
+		JScrollPane scroll = new JScrollPane(description_field);
 		scroll.setBounds(449, 168, 136, 58);
 		add(scroll);
 		
-		JLabel lblCompany = new JLabel("Company");
-		lblCompany.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCompany.setBounds(246, 241, 124, 21);
-		add(lblCompany);
-		idField.addKeyListener(new KeyListener() {
+		JLabel company_label = new JLabel("Company");
+		company_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		company_label.setBounds(246, 241, 124, 21);
+		add(company_label);
+		field_id.addKeyListener(new KeyListener() {
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-				id=idField.getText().trim()+e.getKeyChar();
+				id=field_id.getText().trim()+e.getKeyChar();
 				ArrayList<String> data=DB.searchP(id);
 				if(data.size()==3)
 					{
-						descField.setText(data.get(0));
-						quanField.setText(data.get(2));
+						description_field.setText(data.get(0));
+						quantity_field.setText(data.get(2));
 						switch(data.get(1))
 						{
-							case "General":company.setSelectedIndex(0);break;
-							case "Mats & Rugs":company.setSelectedIndex(1);break;
-							case "N/S & Electric":company.setSelectedIndex(2);break;
+							case "General":companyBox.setSelectedIndex(0);break;
+							case "Mats & Rugs":companyBox.setSelectedIndex(1);break;
+							case "N/S & Electric":companyBox.setSelectedIndex(2);break;
 						}
 					}
 			}
@@ -97,51 +97,53 @@ public class updateProduct extends JPanel {
 				
 			}
 		});
-		btnUpdateProduct = new JButton("Update Product");
-		btnUpdateProduct.addActionListener(new ActionListener() {
+		updateProduct_Button = new JButton("Update Product");
+		updateProduct_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(quanField.getText().equals("")||idField.getText().equals(""))
+				if(!quantity_field.getText().equals("")||!field_id.getText().equals(""))
 				{
-					error.setText(err);
+					error.setText("");
+					id=field_id.getText().trim();
+					quantity =Integer.parseInt(quantity_field.getText().trim());
+					detail=description_field.getText().trim();
+					company=companyBox.getSelectedItem().toString();
+					DB.updateProductToDB(id, detail, company, quantity );
+					field_id.setText("");
+					quantity_field.setText("");
+					description_field.setText("");
 				}
 				else
 				{
-					error.setText("");
-					id=idField.getText().trim();
-					quan=Integer.parseInt(quanField.getText().trim());
-					detail=descField.getText().trim();
-					comp=company.getSelectedItem().toString();
-					DB.updateProductToDB(id, detail, comp, quan);
-					idField.setText("");
-					quanField.setText("");
-					descField.setText("");
+					error.setText(err);
+
+					
 				}
 			}
 		});
-		btnUpdateProduct.setBounds(449, 338, 136, 23);
-		add(btnUpdateProduct);
+		updateProduct_Button.setBounds(449, 338, 136, 23);
+		add(updateProduct_Button);
 		
-		quanField = new JTextField();
-		quanField.setColumns(10);
-		quanField.setBounds(449, 278, 136, 20);
-		add(quanField);
+		quantity_field = new JTextField();
+		quantity_field.setColumns(10);
+		quantity_field.setBounds(449, 278, 136, 20);
+		add(quantity_field);
 		
-		JLabel lblQuantity = new JLabel("Items available");
-		lblQuantity.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblQuantity.setBounds(246, 276, 124, 21);
-		add(lblQuantity);
+		JLabel quantity_label = new JLabel("Items available");
+		quantity_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		quantity_label.setBounds(246, 276, 124, 21);
+		add(quantity_label);
 		
-		company = new JComboBox<String>();
-		company.setBounds(449, 243, 136, 20);
-		add(company);
+		companyBox = new JComboBox<String>();
+		companyBox.setBounds(449, 243, 136, 20);
+		add(companyBox);
 		
 		error = new JLabel("");
 		error.setForeground(Color.RED);
 		error.setBounds(299, 95, 286, 14);
 		add(error);
-		company.addItem("General");
-		company.addItem("Mats & Rugs");
-		company.addItem("N/S & Electric");
+		companyBox.addItem("General");
+		companyBox.addItem("Mats & Rugs");
+		companyBox.addItem("N/S & Electric");
 		
 	}
 

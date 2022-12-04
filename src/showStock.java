@@ -26,7 +26,7 @@ import java.awt.Color;
 
 public class showStock extends JPanel {
 	private JTable stockTable;
-	JComboBox<String> comp;
+	JComboBox<String> companyBox;
 	DefaultTableModel model;
 	/**
 	 * Create the panel.
@@ -34,10 +34,10 @@ public class showStock extends JPanel {
 	public showStock() {
 		setLayout(null);
 		setBounds(100, 100, 840, 619);
-		JLabel lblStock = new JLabel("AVAILABLE STOCK");
-		lblStock.setBounds(328, 26, 182, 21);
-		lblStock.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		add(lblStock);
+		JLabel stock_label = new JLabel("AVAILABLE STOCK");
+		stock_label.setBounds(328, 26, 182, 21);
+		stock_label.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		add(stock_label);
 		
 		model = new DefaultTableModel(); 
 		stockTable = new JTable(model);
@@ -51,15 +51,15 @@ public class showStock extends JPanel {
 		scroll.setBounds(98, 112, 645, 397);
 		add(scroll);
 		
-		comp = new JComboBox<String>();
-		comp.setBackground(Color.WHITE);
-		comp.setBounds(583, 81, 160, 20);
-		add(comp);
-		comp.addItem("All");
-		comp.addItem("General");
-		comp.addItem("Mats & Rugs");
-		comp.addItem("N/S & Electric");
-		comp.addItemListener(new ItemListener() {
+		companyBox = new JComboBox<String>();
+		companyBox.setBackground(Color.WHITE);
+		companyBox.setBounds(583, 81, 160, 20);
+		add(companyBox);
+		companyBox.addItem("All");
+		companyBox.addItem("General");
+		companyBox.addItem("Mats & Rugs");
+		companyBox.addItem("N/S & Electric");
+		companyBox.addItemListener(new ItemListener() {
 			
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
@@ -68,28 +68,28 @@ public class showStock extends JPanel {
 			}
 		});
 		
-		JLabel lblCompany = new JLabel("Company");
-		lblCompany.setBounds(582, 68, 161, 14);
-		add(lblCompany);
+		JLabel company_label = new JLabel("Company");
+		company_label.setBounds(582, 68, 161, 14);
+		add(company_label);
 		
-		JButton btnExportToExcel = new JButton("Export to Excel");
-		btnExportToExcel.addActionListener(new ActionListener() {
+		JButton exportToExcel_Button = new JButton("Export to Excel");
+		exportToExcel_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				toExcel(stockTable, new File("availableStock.xls"));
 				JOptionPane.showMessageDialog(null, "Export file created");
 			}
 		});
-		btnExportToExcel.setBounds(605, 525, 138, 23);
-		add(btnExportToExcel);
+		exportToExcel_Button.setBounds(605, 525, 138, 23);
+		add(exportToExcel_Button);
 		
-		JButton btnRefresh = new JButton("Refresh");
-		btnRefresh.addActionListener(new ActionListener() {
+		JButton refresh_Button = new JButton("Refresh");
+		refresh_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				updateTable();
 			}
 		});
-		btnRefresh.setBounds(457, 525, 138, 23);
-		add(btnRefresh);
+		refresh_Button.setBounds(457, 525, 138, 23);
+		add(refresh_Button);
 		updateTable();
 		
 	}
@@ -98,10 +98,10 @@ public class showStock extends JPanel {
 	{
 		model.setRowCount(0);
 		ArrayList<String> stock=new ArrayList<String>();
-		stock=DB.showStock(comp.getSelectedItem().toString());
-		for(int x=0;x<stock.size();x+=4)
+		stock=DB.showStock(companyBox.getSelectedItem().toString());
+		for(int index=0;index<stock.size();index+=4)
 		{
-			model.addRow(new Object[]{stock.get(x),stock.get(x+1),stock.get(x+2),stock.get(x+3)});
+			model.addRow(new Object[]{stock.get(index),stock.get(index+1),stock.get(index+2),stock.get(index+3)});
 		}
 	}
 	
@@ -111,21 +111,21 @@ public class showStock extends JPanel {
 		        TableModel model = table.getModel();
 		        FileWriter excel = new FileWriter(file);
 
-		        for(int i = 0; i < model.getColumnCount(); i++){
-		            excel.write(model.getColumnName(i) + "\t");
+		        for(int index = 0; index < model.getColumnCount(); index++){
+		            excel.write(model.getColumnName(index) + "\t");
 		        }
 
 		        excel.write("\n");
 
-		        for(int i=0; i< model.getRowCount(); i++) {
+		        for(int index=0; index< model.getRowCount(); index++) {
 		            for(int j=0; j < model.getColumnCount(); j++) {
-		                excel.write(model.getValueAt(i,j).toString()+"\t");
+		                excel.write(model.getValueAt(index,j).toString()+"\t");
 		            }
 		            excel.write("\n");
 		        }
 
 		        excel.close();
 
-		    }catch(IOException e){ JOptionPane.showMessageDialog(null, e); }
+		    }catch(IOException exception){ JOptionPane.showMessageDialog(null, exception); }
 		}
 }
