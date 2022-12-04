@@ -102,15 +102,16 @@ public class AdminPanel extends JFrame implements ActionListener {
 		mntmSearchCashier.addActionListener(this);
 		
 		getContentPane().setLayout(new BorderLayout(0, 0));
-		
-		panels.add(new addProduct());
-		panels.add(new updateProduct());
-		panels.add(new deleteProduct());
-		panels.add(new addCashier());
-		panels.add(new deleteCashier());
+		Product product= new Product();
+		Cashier cashier= new Cashier();
+		panels.add(product.addProduct());
+		panels.add(product.updateProduct());
+		panels.add(product.deleteProduct());
+		panels.add(cashier.addCashier());
+		panels.add(cashier.deleteCashier());
 		panels.add(new showStock());
-		panels.add(new searchProduct());
-		panels.add(new searchCashier());
+		panels.add(product.searchProduct());
+		panels.add(cashier.searchCashier());
 		panels.add(new Sale());
 		getContentPane().add(panels.get(0));
 		

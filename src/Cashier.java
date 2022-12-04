@@ -27,7 +27,7 @@ public class Cashier extends JPanel {
 	String user_deleteCashier, pass_deleteCashier, err_deleteCashier = "Enter username and password";
 	String id_searchCashier, err_searchCashier = "Enter product id!";
 
-	public void addCashier() {
+	public static void addCashier() {
 		// new func
 		setLayout(null);
 		setBounds(100, 100, 840, 619);
@@ -84,7 +84,7 @@ public class Cashier extends JPanel {
 
 	}
 
-	public void deleteCashier() {
+	public static void deleteCashier() {
 		setLayout(null);
 		setBounds(100, 100, 840, 619);
 		JLabel lblDeleteCashier = new JLabel("DELETE CASHIER");
@@ -136,7 +136,7 @@ public class Cashier extends JPanel {
 
 	}
 
-	public void searchCashier() {
+	public static void searchCashier() {
 		setLayout(null);
 		setBounds(100, 100, 840, 619);
 		JLabel lblsearch = new JLabel("SEARCH CASHIER");
