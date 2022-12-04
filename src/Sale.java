@@ -159,7 +159,7 @@ public class Sale extends JPanel {
 		for(int x=1;x<=31;x++)
 		{
 			ndt=date_form(date,s,x);
-			// 
+			//
 			sl=DB.getSale(ndt, com);
 			String x1,x2,x3,x4;
 			
@@ -183,4 +183,6 @@ public class Sale extends JPanel {
 		return date[0]+"/"+date[1]+"/"+date_list[place].trim();
 
 	}
+
+	
 }

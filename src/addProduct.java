@@ -47,15 +47,19 @@ public class addProduct extends JPanel {
 
 
 		setBounds(100, 100, 840, 619);
-		JLabel AddProduct_Label = new JLabel("ADD PRODUCT");
-		AddProduct_Label.setBounds(328, 45, 115, 21);
-		AddProduct_Label.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		add(AddProduct_Label);
+
+		settting_add(328,45,115,21,"ADD PRODUCT");
+		// JLabel lblAddProduct = new JLabel("ADD PRODUCT");
+		// lblAddProduct.setBounds(328, 45, 115, 21);
+		// lblAddProduct.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		// add(lblAddProduct);
 		
-		JLabel ProductName_Label = new JLabel("Product ID");
-		ProductName_Label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		ProductName_Label.setBounds(246, 136, 124, 21);
-		add(ProductName_Label);
+
+		settting_add(246, 136, 124, 21,"Product ID");
+		// JLabel lblProductName = new JLabel("Product ID");
+		// lblProductName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		// add(lblProductName);
 		
 		JLabel ProductDescription_Label = new JLabel("Product Details\r\n");
 		ProductDescription_Label.setFont(new Font("Tahoma", Font.PLAIN, 14));
