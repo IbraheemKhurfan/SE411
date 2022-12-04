@@ -14,49 +14,49 @@ import java.awt.event.ActionEvent;
 public class searchProduct extends JPanel {
 	
 	JTextField idField;
-	JButton btnSearch;
+	JButton Search_Button;
 	private JLabel error;
-	String id,err="Enter product id!";
+	String id,error_message="Enter product id!";
 	/**
 	 * Create the panel.
 	 */
 	public searchProduct() {
 		setLayout(null);
 		setBounds(100, 100, 840, 619);
-		JLabel lblSearchProduct = new JLabel("SEARCH PRODUCT");
-		lblSearchProduct.setBounds(319, 84, 182, 21);
-		lblSearchProduct.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		add(lblSearchProduct);
+		JLabel SearchProduct_Label = new JLabel("SEARCH PRODUCT");
+		SearchProduct_Label.setBounds(319, 84, 182, 21);
+		SearchProduct_Label.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		add(SearchProduct_Label);
 		
-		JLabel lblProductName = new JLabel("Product ID");
-		lblProductName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblProductName.setBounds(253, 156, 124, 21);
-		add(lblProductName);
+		JLabel SearchProduct_Label = new JLabel("Product ID");
+		SearchProduct_Label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		SearchProduct_Label.setBounds(253, 156, 124, 21);
+		add(SearchProduct_Label);
 		
 		idField = new JTextField();
 		idField.setBounds(449, 158, 136, 20);
 		add(idField);
 		idField.setColumns(10);
 		
-		btnSearch = new JButton("Search");
-		btnSearch.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		Search_Button = new JButton("Search");
+		Search_Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent exception) {
 				
-				if(idField.getText().equals(""))
-				{
-					error.setText(err);
-				}
-				else
+				if(!idField.getText().equals(""))
 				{
 					error.setText("");
 					id=idField.getText().trim();
 					DB.searchProduct(id);
 					idField.setText("");
 				}
+				else
+				{
+					error.setText(error_message);
+				}
 			}
 		});
-		btnSearch.setBounds(449, 219, 136, 23);
-		add(btnSearch);
+		Search_Button.setBounds(449, 219, 136, 23);
+		add(Search_Button);
 		
 		error = new JLabel("");
 		error.setForeground(Color.RED);

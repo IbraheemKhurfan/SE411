@@ -13,45 +13,45 @@ import java.awt.event.ActionEvent;
 
 public class searchCashier extends JPanel {
 	
-	JTextField idField;
+	JTextField field_id;
 	JButton btnUpdateProduct;
 	private JLabel error;
-	String id,err="Enter product id!";
+	String id,error_message="Enter product id!";
 	/**
 	 * Create the panel.
 	 */
 	public searchCashier() {
 		setLayout(null);
 		setBounds(100, 100, 840, 619);
-		JLabel lblsearch = new JLabel("SEARCH CASHIER");
-		lblsearch.setBounds(319, 84, 182, 21);
-		lblsearch.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		add(lblsearch);
+		JLabel search_label = new JLabel("SEARCH CASHIER");
+		search_label.setBounds(319, 84, 182, 21);
+		search_label.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		add(search_label);
 		
-		JLabel lbluser = new JLabel("User name");
-		lbluser.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbluser.setBounds(253, 156, 124, 21);
-		add(lbluser);
+		JLabel user_label = new JLabel("User name");
+		user_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		user_label.setBounds(253, 156, 124, 21);
+		add(user_label);
 		
-		idField = new JTextField();
-		idField.setBounds(449, 158, 136, 20);
-		add(idField);
-		idField.setColumns(10);
+		field_id = new JTextField();
+		field_id.setBounds(449, 158, 136, 20);
+		add(field_id);
+		field_id.setColumns(10);
 		
 		btnUpdateProduct = new JButton("Search");
 		btnUpdateProduct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(idField.getText().equals(""))
+				if(!field_id.getText().equals(""))
 				{
-					error.setText(err);
+					error.setText("");
+					id=field_id.getText().trim();
+					DB.searchCashier(id);
+					field_id.setText("");
 				}
 				else
 				{
-					error.setText("");
-					id=idField.getText().trim();
-					DB.searchCashier(id);
-					idField.setText("");
+					error.setText(error_message);
 				}
 			}
 		});
