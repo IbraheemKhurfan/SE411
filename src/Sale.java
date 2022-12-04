@@ -69,22 +69,22 @@ public class Sale extends JPanel {
 		monthlySale.setBounds(62, 112, 144, 23);
 		add(monthlySale);
 		
-		JLabel lblDate = new JLabel("Date");
-		lblDate.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblDate.setBounds(62, 178, 75, 14);
-		add(lblDate);
+		JLabel Date_Label = new JLabel("Date");
+		Date_Label.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Date_Label.setBounds(62, 178, 75, 14);
+		add(Date_Label);
 		
 		date = new JTextField();
 		date.setBounds(62, 199, 86, 20);
 		add(date);
 		date.setColumns(10);
 		
-		JLabel lblMm = new JLabel("yyyy/mm/dd");
-		lblMm.setBounds(149, 202, 85, 14);
-		add(lblMm);
+		JLabel Month_Label = new JLabel("yyyy/mm/dd");
+		Month_Label.setBounds(149, 202, 85, 14);
+		add(Month_Label);
 		
-		JButton btnLoad = new JButton("LOAD");
-		btnLoad.addActionListener(new ActionListener() {
+		JButton Load_Button = new JButton("LOAD");
+		Load_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent exception) {
 				date=date.getText().trim();
 				company=company_box.getSelectedItem().toString();
@@ -94,13 +94,13 @@ public class Sale extends JPanel {
 					monthlySale(date,company);
 			}
 		});
-		btnLoad.setBounds(62, 328, 89, 23);
-		add(btnLoad);
+		Load_Button.setBounds(62, 328, 89, 23);
+		add(Load_Button);
 		
-		JLabel lblCompany = new JLabel("Company");
-		lblCompany.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblCompany.setBounds(62, 230, 109, 27);
-		add(lblCompany);
+		JLabel Company_Label = new JLabel("Company");
+		Company_Label.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Company_Label.setBounds(62, 230, 109, 27);
+		add(Company_Label);
 		
 		company_box = new JComboBox<String>();
 		company_box.setBounds(62, 261, 86, 20);
@@ -132,17 +132,17 @@ public class Sale extends JPanel {
 	
 	public static void dailySale(String date,String company)
 	{
-		ArrayList<String> sl=new ArrayList<String>();
-		sl=DB.getSale(date, company);
+		ArrayList<String> sale_array=new ArrayList<String>();
+		sale_array=DB.getSale(date, company);
 		String x1,x2,x3,x4;
 		defaultTableModel.setRowCount(0);
-		int sz=sl.size()/4;
-		for(int x=0;x<sz;x++)
+		int size=sale_array.size()/4;
+		for(int index=0;index<size;index++)
 		{
-			x1=sl.get(0);sl.remove(0);
-			x2=sl.get(0);sl.remove(0);
-			x3=sl.get(0);sl.remove(0);
-			x4=sl.get(0);sl.remove(0);
+			x1=sale_array.get(0);sale_array.remove(0);
+			x2=sale_array.get(0);sale_array.remove(0);
+			x3=sale_array.get(0);sale_array.remove(0);
+			x4=sale_array.get(0);sale_array.remove(0);
 			
 			defaultTableModel.addRow(new Object[]{x1,x2,x3,x4});
 		}
@@ -153,23 +153,23 @@ public class Sale extends JPanel {
 		String s[]={"","01","02","03","04","05","06","07","08","09",
 					"10","11","12","13","14","15","16","17","18","19",
 					"20","21","22","23","24","25","26","27","28","29","30","31"};
-		ArrayList<String> sl=new ArrayList<String>();
+		ArrayList<String> sale_array=new ArrayList<String>();
 		String ndt;
 		defaultTableModel.setRowCount(0);
-		for(int x=1;x<=31;x++)
+		for(int index=1;index<=31;index++)
 		{
-			ndt=date_form(date,s,x);
+			ndt=date_form(date,s,index);
 			// 
-			sl=DB.getSale(ndt, company);
+			sale_array=DB.getSale(ndt, company);
 			String x1,x2,x3,x4;
 			
-			int sz=sl.size()/4;
-			for(int i=0;i<sz;i++)
+			int size=sale_array.size()/4;
+			for(int i=0;i<size;i++)
 			{
-				x1=sl.get(0);sl.remove(0);
-				x2=sl.get(0);sl.remove(0);
-				x3=sl.get(0);sl.remove(0);
-				x4=sl.get(0);sl.remove(0);
+				x1=sale_array.get(0);sale_array.remove(0);
+				x2=sale_array.get(0);sale_array.remove(0);
+				x3=sale_array.get(0);sale_array.remove(0);
+				x4=sale_array.get(0);sale_array.remove(0);
 				
 				defaultTableModel.addRow(new Object[]{x1,x2,x3,x4});
 			}
