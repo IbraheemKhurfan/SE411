@@ -15,7 +15,7 @@ import java.awt.Color;
 
 public class addProduct extends JPanel {
 	
-	JTextField idField;
+	JTextField field_id;
 	JTextArea descriptionField;
     JTextField quantityField;
     JLabel error;
@@ -32,7 +32,7 @@ public class addProduct extends JPanel {
 		return new Font(name, Font.PLAIN, size);
 	}
 
-	 public void settting_add(int x, int y, int width, int height,String text){
+	 public void setting_add(int x, int y, int width, int height,String text){
 
 		// setBounds(x,y, width, height);
 		JLabel AddProduct_Label = new JLabel(text);
@@ -48,14 +48,14 @@ public class addProduct extends JPanel {
 
 		setBounds(100, 100, 840, 619);
 
-		settting_add(328,45,115,21,"ADD PRODUCT");
+		setting_add(328,45,115,21,"ADD PRODUCT");
 		// JLabel lblAddProduct = new JLabel("ADD PRODUCT");
 		// lblAddProduct.setBounds(328, 45, 115, 21);
 		// lblAddProduct.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		// add(lblAddProduct);
 		
 
-		settting_add(246, 136, 124, 21,"Product ID");
+		setting_add(246, 136, 124, 21,"Product ID");
 		// JLabel lblProductName = new JLabel("Product ID");
 		// lblProductName.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
@@ -66,10 +66,10 @@ public class addProduct extends JPanel {
 		ProductDescription_Label.setBounds(246, 168, 139, 21);
 		add(ProductDescription_Label);
 		
-		idField = new JTextField();
-		idField.setBounds(449, 137, 136, 20);
-		add(idField);
-		idField.setColumns(10);
+		field_id = new JTextField();
+		field_id.setBounds(449, 137, 136, 20);
+		add(field_id);
+		field_id.setColumns(10);
 		
 		descriptionField = new JTextArea();
 		descriptionField.setBounds(449, 168, 136, 58);
@@ -86,15 +86,15 @@ public class addProduct extends JPanel {
 		JButton AddProduct_Button = new JButton("Add Product");
 		AddProduct_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(!quantityField.getText().equals("")||!idField.getText().equals(""))
+				if(!quantityField.getText().equals("")||!field_id.getText().equals(""))
 				{
 					error.setText("");
-					product_id=idField.getText().trim();
+					product_id=field_id.getText().trim();
 					quantity=Integer.parseInt(quantityField.getText().trim());
 					product_details=descriptionField.getText().trim();
 					company=company.getSelectedItem().toString();
 					DB.addProductToDB(product_id, product_details, company, quantity);
-					idField.setText("");
+					field_id.setText("");
 					quantityField.setText("");
 					descriptionField.setText("");
 				}
