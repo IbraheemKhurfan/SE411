@@ -133,7 +133,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("Selected: " + e.getActionCommand()); 
+		System.out.println("Selected: " + e.getActionCommand());
 		// CHANGE TO SWITCH 
 		String cond = e.getActionCommand();
 		switch (cond) {
