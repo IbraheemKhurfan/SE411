@@ -150,13 +150,16 @@ public class Sale extends JPanel {
 	public static void monthlySale(String dt,String com)
 	{
 		String date[]=dt.split("/");
-		String s[]={"","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+		String s[]={"","01","02","03","04","05","06","07","08","09",
+					"10","11","12","13","14","15","16","17","18","19",
+					"20","21","22","23","24","25","26","27","28","29","30","31"};
 		ArrayList<String> sl=new ArrayList<String>();
 		String ndt;
 		dtm.setRowCount(0);
 		for(int x=1;x<=31;x++)
 		{
-			ndt=date[0]+"/"+date[1]+"/"+s[x].trim();
+			ndt=date_form(date,s,x);
+			// 
 			sl=DB.getSale(ndt, com);
 			String x1,x2,x3,x4;
 			
@@ -174,5 +177,10 @@ public class Sale extends JPanel {
 		
 		
 		
+	}
+	// make the string of date 
+	private static String date_form(String[] date,String[] date_list,int place){
+		return date[0]+"/"+date[1]+"/"+date_list[place].trim();
+
 	}
 }
